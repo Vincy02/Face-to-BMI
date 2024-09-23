@@ -1,1 +1,45 @@
-# face-to-bmi
+# Face to BMI
+Il modello proposto in questo progetto ha lo scopo di predire il **Body Mass Index (BMI)** attraverso l'analisi di una foto del volto del soggetto. 
+
+<p align="center">
+	<img src="https://i.imgur.com/XHVvN5d.png" alt="flowchart analisi immagine"/>
+</p>
+
+## Performance
+Per quanto riguarda le performance, il modello ha performato abbastanza bene durante la fase di valutazione, infatti è riuscito a raggiungere un MAE = 3,5 e un MSE = 21,49.
+
+<p align="center">
+	<img src="https://i.imgur.com/982bnYK.png" alt="metrica MSE a variare delle epoche"/>
+</p>
+
+Le prestazioni ottenute da questo modello sono migliori rispetto ai benchmark stabiliti da [Estimation of BMI from Facial Images using Semantic Segmentation based Region-Aware Pooling](https://arxiv.org/abs/2104.04733).
+
+## Dataset
+ Il dominio è rappresentato dal dataset in formato _csv_ con allegate immagini in formato _jpg_ scaricato da [Kaggle](https://www.kaggle.com/datasets/davidjfisher/illinois-doc-labeled-faces-dataset).  
+Si tratta di un dataset formato da foto segnaletiche di detenuti e dei loro dati associati, quali: altezza, peso, ecc.  
+Il copyright del dataset impiegato è di dominio pubblico poiché prodotto dal governo (_Illinois Dept. of Corrections_).  
+Dal dataset originale è stato impiegato solo l’uso del data-frame _person.csv_, contenenti le informazioni per ogni soggetto, e la cartella _front_ contenenti le foto frontali di ogni soggetto.
+Non è stato possibile caricare su GitHub il dataset pre e post elaborazione poiché di grandi dimensioni; per questo motivo, per qualsivoglia motivo si voglia recuperare i dati è possibile scaricare la cartella _data_ (da posizionare nella root del progetto) da [questo link]().
+
+## Installazione
+1. Clonare la repository:
+```
+git clone https://github.com/Vincy02/Face-to-BMI
+cd Face-to-BMI
+```
+2. Installare i requirements per eseguire il progetto:
+```
+pip install -r requirements.txt
+```
+
+## Testare il modello
+1. (Opzionale) spostare nella cartella ./test l'immagine o le immagini che si vorrebbero testare.
+2. Aprire con un qualsiasi editor di testo _prediction.py_ e modificare il la variabile _file_name_ con il nome della foto del volto di cui si vuole predire il BMI.
+3. Runnare _prediction.py_
+```
+python prediction.py
+```
+
+## Disclaimer 
+È fondamentale sottolineare che l'obiettivo di questo progetto è puramente accademico e di ricerca.  
+L'utilizzo di un modello di questo tipo per scopi diagnostici o clinici richiederebbe ulteriori sviluppi, validazioni e regolamentazioni. Inoltre, è importante considerare le implicazioni etiche legate alla privacy e alla discriminazione nell'utilizzo di algoritmi di riconoscimento facciale.
