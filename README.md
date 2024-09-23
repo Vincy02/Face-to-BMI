@@ -12,7 +12,7 @@ Per quanto riguarda le performance, il modello ha performato abbastanza bene dur
 	<img src="https://i.imgur.com/982bnYK.png" alt="metrica MSE a variare delle epoche"/>
 </p>
 
-Le prestazioni ottenute da questo modello sono migliori rispetto ai benchmark stabiliti da [Estimation of BMI from Facial Images using Semantic Segmentation based Region-Aware Pooling](https://arxiv.org/abs/2104.04733).
+Le prestazioni ottenute da questo modello sono migliori rispetto ai benchmark stabiliti da [Estimation of BMI from Facial Images using Semantic Segmentation based Region-Aware Pooling](https://arxiv.org/abs/2104.04733), di circa 30%, _sempre valutato rispetto al test-set usato nel progetto_.
 
 ## Dataset
 Il dominio è rappresentato dal dataset in formato _csv_ con allegate immagini in formato _jpg_ scaricato da [Kaggle](https://www.kaggle.com/datasets/davidjfisher/illinois-doc-labeled-faces-dataset).  
