@@ -37,7 +37,13 @@ Il modello usato nel progetto finale è quello della _Idea 6_ (contrassegnato in
 git clone https://github.com/Vincy02/Face-to-BMI
 cd Face-to-BMI
 ```
-2. Installare i requirements per eseguire il progetto:
+2. Bisogna aver installato sul proprio computer due dispense di [Build Tools](https://visualstudio.microsoft.com/it/visual-cpp-build-tools/):
+
+<p align="center">
+	<img src="https://i.imgur.com/IZ18Y4K.png" alt="dispense Build Tools necessarie"/>
+</p>
+
+3. Installare i requirements per eseguire il progetto:
 ```
 pip install -r requirements.txt
 ```
