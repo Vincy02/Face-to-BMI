@@ -20,6 +20,8 @@ face = ap.extract_face(img_path, "./test/tmp/")
 if face is True:
 	import subprocess
 	os.chdir('face-parsing')
+	# subprocess.run(['python', 'main.py', '--image', '../test/tmp', '--output', '../test/tmp'])
+	# Se si runna il programma da wls o linux commentare la riga di sotto e 'scommentare quella di sopra'
 	subprocess.run('python main.py --image ../test/tmp --output ../test/tmp')
 	os.chdir('..')
 
