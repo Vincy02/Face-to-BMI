@@ -37,7 +37,7 @@ Il modello usato nel progetto finale è quello della _Idea 6_ (contrassegnato in
 git clone https://github.com/Vincy02/Face-to-BMI
 cd Face-to-BMI
 ```
-2. Bisogna aver installato sul proprio computer due dispense di [Build Tools](https://visualstudio.microsoft.com/it/visual-cpp-build-tools/):
+2. Installare (se non si hanno) le due dispense di [Build Tools](https://visualstudio.microsoft.com/it/visual-cpp-build-tools/) presenti nell'immagine:
 
 <p align="center">
 	<img src="https://i.imgur.com/IZ18Y4K.png" alt="dispense Build Tools necessarie"/>
@@ -48,8 +48,8 @@ cd Face-to-BMI
 pip install -r requirements.txt
 ```
 
-## Installazione (WLS con inerente supporto CUDA 12.3)
-1. (Opzionale) Bisogna aver installato e configurato correttamente il supporto [CUDA 12.3](https://developer.nvidia.com/cuda-12-3-0-download-archive) e [cuDNN 8.9](https://developer.nvidia.com/rdp/cudnn-archive) per usufruire della potenza di calcolo della GPU NVIDIA.
+## Installazione (WSL con inerente supporto CUDA 12.3)
+1. (Opzionale) Bisogna aver installato e configurato correttamente i supporti [CUDA 12.3](https://developer.nvidia.com/cuda-12-3-0-download-archive) e [cuDNN 8.9](https://developer.nvidia.com/rdp/cudnn-archive) per usufruire della potenza di calcolo della propria GPU NVIDIA.
 2. Clonare la repository:
 ```
 git clone https://github.com/Vincy02/Face-to-BMI
