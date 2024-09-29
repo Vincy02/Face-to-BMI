@@ -31,7 +31,7 @@ Se si volesse testare e/o visionare il codice di ciascun modello ideato, è poss
 Per testare dunque il modello scelto, basta spostare nella cartella _models_ presente nella cartella root del progetto il file "face_to_bmi.keras" e relativo codice sorgente trovato.
 Il modello usato nel progetto finale è quello della _Idea 6_ (contrassegnato in rosso nella immagine del flowchart delle idee progettuali).
 
-## Installazione
+## Installazione (Windows)
 1. Clonare la repository:
 ```
 git clone https://github.com/Vincy02/Face-to-BMI
@@ -46,6 +46,26 @@ cd Face-to-BMI
 3. Installare i requirements per eseguire il progetto:
 ```
 pip install -r requirements.txt
+```
+
+## Installazione (WLS con inerente supporto CUDA 12.3)
+1. (Opzionale) Bisogna aver installato e configurato correttamente il supporto [CUDA 12.3](https://developer.nvidia.com/cuda-12-3-0-download-archive) e [cuDNN 8.9](https://developer.nvidia.com/rdp/cudnn-archive) per usufuire della potenza di calcolo della propria GPU NVIDIA.
+2. Clonare la repository:
+```
+git clone https://github.com/Vincy02/Face-to-BMI
+cd Face-to-BMI
+```
+3. Creazione ambiente di lavoro:
+```
+conda create -n face-to-bmi python=3.12.5
+```
+4. Attivazione ambiente di lavoro:
+```
+conda activate face-to-bmi
+```
+5. Installare i requirements per eseguire il progetto:
+```
+pip install -r requirements-wsl-cuda.txt
 ```
 
 ## Testare il modello
