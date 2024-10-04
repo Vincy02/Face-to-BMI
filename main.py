@@ -3,53 +3,62 @@ import pandas as pd
 import time
 import tqdm
 import tensorflow as tf
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Input
+from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 import numpy as np
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.regularizers import l2
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Input, Dropout
-from sklearn.model_selection import train_test_split
 
 df = pd.read_csv("data/new_data.csv")
-image_dir = 'data/parsed_img/'
+image_dir = 'data/new_img/'
 IMG_DIM = 128
 
-def load_data(df):
-	X = []
-	y = []
-	with tqdm.tqdm(total=len(os.listdir(image_dir)), desc="Carico immagini") as pbar:
-		for index, row in df.iterrows():
-			img_path = image_dir + str(row['id']) + '.jpg'
-			img = tf.keras.preprocessing.image.load_img(img_path, target_size=(IMG_DIM, IMG_DIM), color_mode='grayscale')
-			img_array = tf.keras.preprocessing.image.img_to_array(img)
-			img_array /= 255.0
-			X.append(img_array)
-			y.append(row['bmi'])
-			pbar.update(1)
-	return np.array(X), np.array(y)
+num_images = int(len(os.listdir(image_dir)) / 3)
+X = np.empty((num_images, IMG_DIM, IMG_DIM, 3))
+y = np.empty(num_images)
 
-X, y = load_data(df)
+with tqdm.tqdm(total=num_images, desc="Carico immagini") as pbar:
+	for index, row in df.iterrows():
+		if index == num_images:
+			break
+		img_path = image_dir + str(row['id']) + '.jpg'
+		img = tf.keras.preprocessing.image.load_img(img_path, target_size=(IMG_DIM, IMG_DIM))
+		img_array = tf.keras.preprocessing.image.img_to_array(img)
+		img_array /= 255.0
 
+		X[index] = img_array
+		y[index] = row['bmi']
+		pbar.update(1)
+
+print("preparo test - train set")
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 del X
 del y
 
-model = Sequential([
-    Input((IMG_DIM, IMG_DIM, 1)),
-    Conv2D(128, (3, 3), activation='relu'),
-    MaxPooling2D(2, 2),
-    Conv2D(64, (3, 3), activation='relu'),
-    MaxPooling2D(2, 2),
-    Flatten(),
-    Dense(32, activation='relu', kernel_regularizer=l2(0.01)),
-    Dense(16, activation='relu', kernel_regularizer=l2(0.01)),
-    Dense(1)
-])
+print("creo il modello ...")
 
-from tensorflow.keras.optimizers import Adam
+from bmi_head import BMIHead
 
-optimizer = Adam(learning_rate=0.0001)
-model.compile(optimizer=optimizer, loss='mean_squared_error', metrics=['mae'])
+def get_model():
+	base_model = tf.keras.applications.ResNet50(weights='imagenet', include_top=False, input_shape=(IMG_DIM, IMG_DIM, 3))
+
+	for layer in base_model.layers:
+	    layer.trainable = False
+
+	x = base_model.output
+	x = tf.keras.layers.Flatten()(x)
+	x = BMIHead()(x)
+
+	model = tf.keras.models.Model(inputs=base_model.input, outputs=x)
+	return model
+
+model = get_model()
+print("modello creato!")
+
+model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mae'])
+
+print("inizio addestramento")
 
 history = model.fit(
 	X_train, y_train,
