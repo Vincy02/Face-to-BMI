@@ -1,0 +1,11 @@
+NOME FILE		Ground Truth		BMI predetto
+test0.jpg		21.7				25.345425
+test1.jpg		27.1				26.700344
+test2.jpg		25.2				24.614307
+test3.jpg		24.5				24.174326
+test4.jpg		32.8				27.215355
+test5.jpg		29.0				25.611341
+test6.jpg		21.5				24.339079
+test7.jpg		24.3				25.854465
+test8.jpg		27.2				26.328989
+test9.jpg		24.7				22.522251
