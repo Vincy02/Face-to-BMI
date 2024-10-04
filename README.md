@@ -1,18 +1,34 @@
+
 # Face to BMI
 Il modello proposto in questo progetto ha lo scopo di predire il **Body Mass Index (BMI)** attraverso l'analisi di una foto del volto del soggetto. 
 
 <p align="center">
-	<img src="https://i.imgur.com/XHVvN5d.png" alt="flowchart analisi immagine"/>
+<small><i>idea 6</i></small>
+	<img src="https://i.imgur.com/XHVvN5d.png" alt="flowchart analisi immagine idea 6"/>
+</p>
+
+<p align="center">
+<small><i>idea 10</i></small>
+	<img src="https://i.imgur.com/Y3cmSSR.png" alt="flowchart analisi immagine idea 10"/>
 </p>
 
 ## Performance
-Per quanto riguarda le performance, il modello ha performato abbastanza bene durante la fase di valutazione, infatti è riuscito a raggiungere un MAE = 3,5 e un MSE = 21,49.
+Erano stati individuati 2 modelli performare abbastanza bene durante la fase di training / eval: _idea 6_ & _idea 10_.
+Il modello _idea 6_ ha performato abbastanza bene durante la fase di valutazione, infatti è riuscito a raggiungere un MAE = 3,5 e un MSE = 21,49.
 
 <p align="center">
-	<img src="https://i.imgur.com/982bnYK.png" alt="metrica MSE a variare delle epoche"/>
+	<img src="https://i.imgur.com/982bnYK.png" alt="metrica MSE idea 6 a variare delle epoche"/>
 </p>
 
-Le prestazioni ottenute da questo modello sono migliori rispetto ai benchmark stabiliti da [Estimation of BMI from Facial Images using Semantic Segmentation based Region-Aware Pooling](https://arxiv.org/abs/2104.04733), di circa 30%, _sempre valutato rispetto al test-set usato nel progetto_.
+Il modello _idea 10_ anch'esso ha performato abbastanza bene raggiungendo un MAE = 3,75 e un MSE = 25,89.
+
+<p align="center">
+	<img src="https://i.imgur.com/zyvaA6y.png" alt="metrica MSE idea 10 a variare delle epoche"/>
+</p>
+
+Le prestazioni in media dei due modelli sviluppati sono "migliori" rispetto ai benchmark stabiliti da [Estimation of BMI from Facial Images using Semantic Segmentation based Region-Aware Pooling](https://arxiv.org/abs/2104.04733), di circa 30%, _sempre valutato rispetto al test-train set usato nel progetto_.
+
+Come discusso anche nella documentazione si è deciso di usare come modello finale quello dell'_idea 10_, perché risultava performare meglio durate una fase di valutazione "finale" fatta con altre immagini non presenti nel dataset iniziale.
 
 ## Dataset
 Il dominio è rappresentato dal dataset in formato _csv_ con allegate immagini in formato _jpg_ scaricato da [Kaggle](https://www.kaggle.com/datasets/davidjfisher/illinois-doc-labeled-faces-dataset).  
@@ -23,13 +39,13 @@ Non è stato possibile caricare su GitHub il dataset pre e post elaborazione poi
 
 ## Idee progettuali
 <p align="center">
-	<img src="https://i.imgur.com/JqxtDMe.png" alt="workflow idee progettuali"/>
+	<img src="https://i.imgur.com/gwFjMS3.png" alt="workflow idee progettuali"/>
 </p>
 
 Durante la creazione del modello sono state fatte diverse prove e creati diversi modelli.
 Se si volesse testare e/o visionare il codice di ciascun modello ideato, è possibile scaricare e recuperare quindi il modello corrispondente all'_idea_ (con relativo codice) da [questo link](https://mega.nz/folder/Y4ITkbaY#Zl9oZCCrTKNRT2zLWHNBRg).
-Per testare dunque il modello scelto, basta spostare nella cartella _models_ presente nella cartella root del progetto il file "face_to_bmi.keras" e relativo codice sorgente trovato.
-Il modello usato nel progetto finale è quello della _Idea 6_ (contrassegnato in rosso nella immagine del flowchart delle idee progettuali).
+Per testare dunque il modello scelto, basta spostare nella cartella _models_ presente nella cartella root del progetto il file "face_to_bmi.keras" e relativo codice sorgente nella cartella root del progetto.
+Il modello usato nel progetto finale è quello della _Idea 10_ (contrassegnato in rosso nella immagine del flowchart delle idee progettuali).
 
 ## Installazione (Windows)
 1. Clonare la repository:
@@ -47,6 +63,8 @@ cd Face-to-BMI
 ```
 pip install -r requirements.txt
 ```
+4. Installare il _modello 10_ dal seguente link: https://mega.nz/folder/Y4ITkbaY#Zl9oZCCrTKNRT2zLWHNBRg/file/V9IkEBiS
+5. Spostare il modello scaricato nella cartella _models_ presente nella cartella root del progetto.
 
 ## Installazione (WSL con inerente supporto CUDA 12.3)
 1. (Opzionale) Bisogna aver installato e configurato correttamente i supporti [CUDA 12.3](https://developer.nvidia.com/cuda-12-3-0-download-archive) e [cuDNN 8.9](https://developer.nvidia.com/rdp/cudnn-archive) per usufruire della potenza di calcolo della propria GPU NVIDIA.
@@ -78,11 +96,13 @@ sudo apt-get install libopenblas-dev liblapack-dev -y
 ```
 pip install -r requirements-wsl-cuda.txt
 ```
+4. Installare il _modello 10_ dal seguente link: https://mega.nz/folder/Y4ITkbaY#Zl9oZCCrTKNRT2zLWHNBRg/file/V9IkEBiS
+5. Spostare il modello scaricato nella cartella _models_ presente nella cartella root del progetto.
 
 ## Testare il modello
-1. (Opzionale) spostare nella cartella ./test l'immagine o le immagini che si vorrebbero testare.
-2. Aprire con un qualsiasi editor di testo _prediction.py_ e modificare il la variabile _file_name_ con il nome della foto del volto di cui si vuole predire il BMI.
-3. Runnare _prediction.py_
+1. Spostare nella cartella ./test l'immagine o le immagini che si vorrebbero testare.
+2. Runnare _prediction.py_, che analizzerà tutte le foto presenti nella cartella _test_.
+(N.B.: le foto devono essere necessariamente in formato _jpg_)
 ```
 python prediction.py
 ```
